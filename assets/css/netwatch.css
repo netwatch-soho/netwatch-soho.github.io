@@ -78,12 +78,6 @@ body::after {
 }
 
 
-/* Ensure injected nav wrapper sits above all page content */
-#site-nav {
-  z-index: 200;
-}
-
-
 /* ── NAVIGATION ── */
 nav {
   position: sticky;
