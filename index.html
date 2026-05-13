@@ -3,17 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <meta http-equiv="Content-Security-Policy"
-  content="
-    default-src 'self';
-    script-src 'self' 'unsafe-inline';
-    connect-src 'self';
-    frame-src 'self';
-    img-src 'self' data:;
-    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-    font-src 'self' https://fonts.gstatic.com;
-    worker-src 'self' blob:;
-  ">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; worker-src 'self' blob:;">
   <meta property="og:title" content="NetWatch Advanced | Network Security & Optimization" />
   <meta property="og:description" content="SOHO network security, DNS deployment, and IDS monitoring. Your network deserves a check engine light." />
   <meta property="og:image" content="https://netwatchadvanced.github.io/og-image.png" />
@@ -24,102 +14,20 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/netwatch.css" />
-
   <style>
-    /* ── INDEX: HERO ── */
-    .hero {
-      min-height: calc(100vh - var(--nav-height));
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 4rem 2rem 4rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .hero-eyebrow {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--teal);
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      animation: fadeUp 0.5s ease both;
-    }
-
-    .hero-eyebrow::before {
-      content: '';
-      display: block;
-      width: 32px;
-      height: 1px;
-      background: var(--teal);
-    }
-
-    .hero h1 {
-      font-family: var(--head);
-      font-size: clamp(2.6rem, 6vw, 4.5rem);
-      font-weight: 700;
-      line-height: 1.05;
-      letter-spacing: -0.01em;
-      color: var(--text);
-      margin-bottom: 1.5rem;
-      max-width: 840px;
-      animation: fadeUp 0.5s 0.1s ease both;
-    }
-
+    .hero { min-height: calc(100vh - var(--nav-height)); display: flex; flex-direction: column; justify-content: center; padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .hero-eyebrow { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; animation: fadeUp 0.5s ease both; }
+    .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--teal); }
+    .hero h1 { font-family: var(--head); font-size: clamp(2.6rem, 6vw, 4.5rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.01em; color: var(--text); margin-bottom: 1.5rem; max-width: 840px; animation: fadeUp 0.5s 0.1s ease both; }
     .hero h1 em { font-style: normal; color: var(--teal); }
-
-    .hero-sub {
-      font-size: 1.15rem;
-      color: var(--text-muted);
-      max-width: 580px;
-      margin-bottom: 3rem;
-      font-weight: 300;
-      line-height: 1.8;
-      animation: fadeUp 0.5s 0.2s ease both;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      align-items: center;
-      animation: fadeUp 0.5s 0.3s ease both;
-    }
-
-    @media (max-width: 768px) {
-      .hero { padding: 3rem 1.5rem; min-height: auto; }
-    }
+    .hero-sub { font-size: 1.15rem; color: var(--text-muted); max-width: 580px; margin-bottom: 3rem; font-weight: 300; line-height: 1.8; animation: fadeUp 0.5s 0.2s ease both; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; animation: fadeUp 0.5s 0.3s ease both; }
+    @media (max-width: 768px) { .hero { padding: 3rem 1.5rem; min-height: auto; } }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="index.html" class="nav-logo">
-      <span class="logo-bracket">[</span>NET<span>WATCH</span><span class="logo-bracket">]</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="services.html">Services</a></li>
-      <li><a href="index.html#how-it-works">How It Works</a></li>
-      <li><a href="why.html">Why NetWatch?</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html" class="nav-cta">Get Started</a></li>
-    </ul>
-    <button class="nav-hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="services.html" onclick="toggleMenu()">Services</a>
-    <a href="index.html#how-it-works" onclick="toggleMenu()">How It Works</a>
-    <a href="why.html" onclick="toggleMenu()">Why NetWatch?</a>
-    <a href="about.html" onclick="toggleMenu()">About</a>
-    <a href="contact.html" class="nav-cta" onclick="toggleMenu()">Get Started</a>
-  </div>
+  <div id="site-nav" data-active=""></div>
 
   <section class="hero">
     <p class="hero-eyebrow">Network Security &amp; Optimization | SOHO Specialists</p>
@@ -173,11 +81,11 @@
   <div class="divider"></div>
 
   <!--
-   <div style="max-width: 800px; margin: 0 auto; padding: 2rem 2rem 0;">
-  <img src="assets/nwa.png" alt="NetWatch dashboard overview" style="width: 100%; height: auto; border-radius: 4px; display: block;" />
-</div>
+  <div style="max-width: 800px; margin: 0 auto; padding: 2rem 2rem 0;">
+    <img src="assets/nwa.png" alt="NetWatch dashboard overview" style="width: 100%; height: auto; border-radius: 4px; display: block;" />
+  </div>
   -->
-  
+
   <section class="section" id="how-it-works">
     <p class="section-label">The Engagement Model</p>
     <h2>A process, not just a product.</h2>
@@ -186,7 +94,6 @@
       We don't believe in shortcuts or skip steps, and neither should you. Here's the chain,
       so we can determine where you enter it.
     </p>
-  
 
     <div class="tier-flow">
 
@@ -205,7 +112,7 @@
               Every engagement starts here. Before security monitoring is relevant, your network
               needs to actually work at the speed and consistency your ISP is providing.
               Weak coverage, channel interference, router placement, and ISP equipment issues
-              are common and fixable. This is the starting point. 
+              are common and fixable. This is the starting point.
             </p>
             <div class="tier-services">
               <div class="tier-service"><span class="tier-service-dot"></span>Throughput testing vs. plan speed</div>
@@ -288,9 +195,9 @@
               every device on your network is covered whether it wants to be or not, and known-bad domains
               are blocked before a connection is ever attempted.
               This tier is a meaningful standalone deployment and it feeds the NetWatch dashboard
-              with DNS telemetry, when Tier 4 follows. You are not <b>required</b> to implement Tier 4 in order to reap the benefits of Tier 3, several 
-              Clients have seen the benefits of DNS privacy and security. 
-          </p>
+              with DNS telemetry, when Tier 4 follows. You are not <b>required</b> to implement Tier 4 in order to reap the benefits of Tier 3, several
+              Clients have seen the benefits of DNS privacy and security.
+            </p>
             <div class="tier-services">
               <div class="tier-service"><span class="tier-service-dot"></span>Pi-hole network-wide ad &amp; tracker blocking</div>
               <div class="tier-service"><span class="tier-service-dot"></span>Unbound fully recursive resolver</div>
@@ -303,7 +210,7 @@
               <strong>Note:</strong> Tier 4 (NetWatch) can be deployed without a DNS layer, but the picture
               it gives you is less complete. DNS telemetry is an important data source in the
               dashboard, as it's what tells you an Echo Dot tried to bypass your resolver 40 times today.
-              We recommend Tier 3 first, but <b>it is not required for Tier 4.</b> 
+              We recommend Tier 3 first, but <b>it is not required for Tier 4.</b>
             </div>
           </div>
         </div>
@@ -349,7 +256,7 @@
             </div>
             <div class="tier-note-teal">
               <strong>Detection, not prevention.</strong> An important thing to understand prior to deployment
-              is that NetWatch tells you what's happening, but it does not stop it. The value is visibility: 
+              is that NetWatch tells you what's happening, but it does not stop it. The value is visibility:
               knowing a device is behaving abnormally,
               that traffic is going somewhere it shouldn't, or that something needs your attention.
               What happens next is a conversation. Operator-assisted remote response is on the roadmap
@@ -381,61 +288,8 @@
     </div>
   </div>
 
-  <footer>
-    <div class="footer-inner">
-      <span class="footer-brand">[NET<span>WATCH</span>]</span>
-      <ul class="footer-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="why.html">Why NetWatch</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="privacy.html">Privacy</a></li>
-      </ul>
-      <span class="footer-copy">&copy; 2026 NetWatch | All rights reserved</span>
-    </div>
-  </footer>
-
-  <script>
-    function toggleMenu() {
-      document.getElementById('mobileMenu').classList.toggle('open');
-    }
-
-    function setTierHeight(tier, open) {
-      const body = tier.querySelector('.tier-body');
-      body.style.maxHeight = open ? body.scrollHeight + 'px' : '0';
-    }
-
-function toggleTier(id) {
-  const tier = document.getElementById(id);
-  const wasActive = tier.classList.contains('active');
-  document.querySelectorAll('.tier').forEach(t => {
-    t.classList.remove('active');
-    setTierHeight(t, false);
-  });
-  if (!wasActive) {
-    tier.classList.add('active');
-    setTierHeight(tier, true);
-    setTimeout(() => {
-      tier.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 400);
-  }
-}
-
-    window.addEventListener('DOMContentLoaded', function() {
-      const t1 = document.getElementById('tier1');
-      t1.classList.add('active');
-      setTierHeight(t1, true);
-    });
-
-    document.addEventListener('click', function(e) {
-      const menu = document.getElementById('mobileMenu');
-      const hamburger = document.querySelector('.nav-hamburger');
-      if (menu.classList.contains('open') && !menu.contains(e.target) && !hamburger.contains(e.target)) {
-        menu.classList.remove('open');
-      }
-    });
-  </script>
+  <footer id="site-footer"></footer>
+  <script src="assets/js/netwatch.js"></script>
 
 </body>
 </html>

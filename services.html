@@ -3,531 +3,90 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <meta http-equiv="Content-Security-Policy"
-  content="
-    default-src 'self';
-    script-src 'self' 'unsafe-inline';
-    connect-src 'self';
-    frame-src 'self';
-    img-src 'self' data:;
-    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-    font-src 'self' https://fonts.gstatic.com;
-    worker-src 'self' blob:;
-  ">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; worker-src 'self' blob:;">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Services | NetWatch</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/netwatch.css" />
-
   <style>
-    /* ── SERVICES: SERVICE GRID ── */
-    .service-group {
-      margin-bottom: 2rem;
-    }
+    /* ── SERVICE GROUPS ── */
+    .service-group { margin-bottom: 2rem; }
+    .service-group + .service-group { margin-top: 3.5rem; padding-top: 3.5rem; border-top: 1px solid var(--border); }
+    .service-group-label { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.75rem; }
+    .service-group-label span { font-family: var(--mono); font-size: 0.6rem; color: var(--bg); background: var(--teal-dim); padding: 0.2rem 0.5rem; border-radius: 2px; letter-spacing: 0.1em; }
+    .service-group-label span.t3, .service-group-label span.t4 { background: var(--teal); }
 
-    .service-group + .service-group {
-      margin-top: 3.5rem;
-      padding-top: 3.5rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .service-group-label {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-bottom: 1rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .service-group-label span {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      color: var(--bg);
-      background: var(--teal-dim);
-      padding: 0.2rem 0.5rem;
-      border-radius: 2px;
-      letter-spacing: 0.1em;
-    }
-
-    .service-group-label span.t3,
-    .service-group-label span.t4 {
-      background: var(--teal);
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .service-card {
-      background: var(--bg2);
-      padding: 1.75rem;
-      transition: background 0.2s;
-    }
-
+    /* ── SERVICE CARDS ── */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+    .service-card { background: var(--bg2); padding: 1.75rem; transition: background 0.2s; }
     .service-card:hover { background: var(--bg3); }
-
-    .service-card-header {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .service-icon {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      color: var(--teal-dim);
-      width: 32px;
-      height: 32px;
-      border: 1px solid var(--border2);
-      border-radius: 3px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      background: var(--bg3);
-    }
-
-    .service-card h3 {
-      font-family: var(--head);
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text);
-      letter-spacing: 0.02em;
-      line-height: 1.3;
-    }
-
-    .service-card p {
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      line-height: 1.75;
-    }
-
-    .service-card .service-note {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.08em;
-      color: var(--text-dim);
-      margin-top: 0.75rem;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .service-card .service-note::before {
-      content: '→';
-      color: var(--teal-dim);
-    }
-
-    /* ── HARDWARE REALITY CALLOUT ── */
-    .hardware-callout {
-      background: var(--bg2);
-      border: 1px solid var(--border2);
-      border-radius: 4px;
-      padding: 2rem 2.25rem;
-      margin-bottom: 4rem;
-    }
-
-    .hardware-callout-label {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin-bottom: 0.75rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .hardware-callout-label::before {
-      content: '⚠';
-      font-size: 0.75rem;
-    }
-
-    .hardware-callout p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.8;
-      margin-bottom: 0.75rem;
-    }
-
-    .hardware-callout p:last-child { margin-bottom: 0; }
-
-    .hardware-callout strong {
-      color: var(--text);
-      font-weight: 500;
-    }
+    .service-card-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 0.75rem; }
+    .service-icon { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--teal-dim); width: 32px; height: 32px; border: 1px solid var(--border2); border-radius: 3px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--bg3); }
+    .service-card h3 { font-family: var(--head); font-size: 0.95rem; font-weight: 600; color: var(--text); letter-spacing: 0.02em; line-height: 1.3; }
+    .service-card p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.75; }
+    .service-card .service-note { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; color: var(--text-dim); margin-top: 0.75rem; display: flex; align-items: center; gap: 0.4rem; }
+    .service-card .service-note::before { content: '→'; color: var(--teal-dim); }
 
     /* ── INSTALL CONFIGS ── */
-    .install-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-      margin-bottom: 2rem;
-    }
+    .install-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; margin-bottom: 2rem; }
+    .install-card { background: var(--bg2); padding: 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
+    .install-card.featured { background: var(--bg3); border-left: 2px solid var(--teal); }
+    .install-card-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); }
+    .install-card.featured .install-card-label { color: var(--teal); }
+    .install-card h3 { font-family: var(--head); font-size: 1.1rem; font-weight: 700; color: var(--text); letter-spacing: 0.02em; }
+    .install-includes { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
+    .install-includes li { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; display: flex; align-items: flex-start; gap: 0.6rem; }
+    .install-includes li::before { content: '▸'; color: var(--teal-dim); font-size: 0.7rem; flex-shrink: 0; margin-top: 0.15rem; }
+    .install-card.featured .install-includes li::before { color: var(--teal); }
+    .install-hardware-note { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.06em; color: var(--text-dim); padding-top: 1rem; border-top: 1px solid var(--border); line-height: 1.6; }
+    .install-hardware-note strong { color: var(--text-muted); font-weight: 500; }
 
-    .install-card {
-      background: var(--bg2);
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-
-    .install-card.featured {
-      background: var(--bg3);
-      border-left: 2px solid var(--teal);
-    }
-
-    .install-card-label {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-    }
-
-    .install-card.featured .install-card-label {
-      color: var(--teal);
-    }
-
-    .install-card h3 {
-      font-family: var(--head);
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: 0.02em;
-    }
-
-    .install-includes {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      flex: 1;
-    }
-
-    .install-includes li {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-      display: flex;
-      align-items: flex-start;
-      gap: 0.6rem;
-    }
-
-    .install-includes li::before {
-      content: '▸';
-      color: var(--teal-dim);
-      font-size: 0.7rem;
-      flex-shrink: 0;
-      margin-top: 0.15rem;
-    }
-
-    .install-card.featured .install-includes li::before {
-      color: var(--teal);
-    }
-
-    .install-hardware-note {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.06em;
-      color: var(--text-dim);
-      padding-top: 1rem;
-      border-top: 1px solid var(--border);
-      line-height: 1.6;
-    }
-
-    .install-hardware-note strong {
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    /* ── SUBSCRIPTION TIERS ── */
-    .subscription-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .sub-card {
-      background: var(--bg2);
-      border: 1px solid var(--border2);
-      border-radius: 4px;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-
-    .sub-card.featured {
-      border-color: var(--teal);
-    }
-
-    .sub-card-label {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-    }
-
+    /* ── SUBSCRIPTION ── */
+    .sub-card { background: var(--bg2); border: 1px solid var(--border2); border-radius: 4px; padding: 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
+    .sub-card.featured { border-color: var(--teal); }
+    .sub-card-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); }
     .sub-card.featured .sub-card-label { color: var(--teal); }
-
-    .sub-card h3 {
-      font-family: var(--head);
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: 0.02em;
-    }
-
-    .sub-card-desc {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.75;
-    }
-
-    .sub-includes {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .sub-includes li {
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      display: flex;
-      align-items: flex-start;
-      gap: 0.6rem;
-      line-height: 1.5;
-    }
-
-    .sub-includes li::before {
-      content: '▸';
-      color: var(--teal-dim);
-      font-size: 0.7rem;
-      flex-shrink: 0;
-      margin-top: 0.15rem;
-    }
-
+    .sub-card h3 { font-family: var(--head); font-size: 1.25rem; font-weight: 700; color: var(--text); letter-spacing: 0.02em; }
+    .sub-card-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.75; }
+    .sub-includes { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .sub-includes li { font-size: 0.875rem; color: var(--text-muted); display: flex; align-items: flex-start; gap: 0.6rem; line-height: 1.5; }
+    .sub-includes li::before { content: '▸'; color: var(--teal-dim); font-size: 0.7rem; flex-shrink: 0; margin-top: 0.15rem; }
     .sub-card.featured .sub-includes li::before { color: var(--teal); }
-
-    .sub-fit {
-      padding: 0.9rem 1rem;
-      background: var(--bg3);
-      border-radius: 3px;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      line-height: 1.65;
-    }
-
-    .sub-fit strong {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      display: block;
-      margin-bottom: 0.3rem;
-    }
-
-    /* ── OWNERSHIP NOTE ── */
-    .ownership-note {
-      background: var(--teal-glow);
-      border: 1px solid var(--teal-dim);
-      border-radius: 4px;
-      padding: 1.5rem 1.75rem;
-      margin-bottom: 4rem;
-    }
-
-    .ownership-note p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.8;
-      margin-bottom: 0.5rem;
-    }
-
-    .ownership-note p:last-child { margin-bottom: 0; }
-
-    .ownership-note strong { color: var(--teal); font-weight: 500; }
+    .sub-fit { padding: 0.9rem 1rem; background: var(--bg3); border-radius: 3px; font-size: 0.82rem; color: var(--text-muted); line-height: 1.65; }
+    .sub-fit strong { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); display: block; margin-bottom: 0.3rem; }
 
     /* ── DEMO CTA ── */
-    .demo-cta {
-      background: var(--bg2);
-      border: 1px solid var(--border2);
-      border-radius: 4px;
-      padding: 2rem 2.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 2rem;
-      flex-wrap: wrap;
-      margin-bottom: 2rem;
-    }
-
-    .demo-cta-content h3 {
-      font-family: var(--head);
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 0.4rem;
-    }
-
-    .demo-cta-content h3 em {
-      font-style: normal;
-      color: var(--teal);
-    }
-
-    .demo-cta-content p {
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      max-width: 520px;
-    }
+    .demo-cta { background: var(--bg2); border: 1px solid var(--border2); border-radius: 4px; padding: 2rem 2.25rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .demo-cta-content h3 { font-family: var(--head); font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; }
+    .demo-cta-content h3 em { font-style: normal; color: var(--teal); }
+    .demo-cta-content p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.7; max-width: 520px; }
 
     /* ── STICKY TIER NAV ── */
-    .tier-nav {
-      position: sticky;
-      top: var(--nav-height);
-      z-index: 90;
-      background: rgba(8, 12, 20, 0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .tier-nav-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: flex;
-      align-items: stretch;
-      gap: 0;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-
+    .tier-nav { position: sticky; top: var(--nav-height); z-index: 90; background: rgba(8, 12, 20, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .tier-nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: stretch; gap: 0; overflow-x: auto; scrollbar-width: none; }
     .tier-nav-inner::-webkit-scrollbar { display: none; }
-
-    .tier-nav-item {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 0.85rem 1.25rem;
-      text-decoration: none;
-      border-bottom: 2px solid transparent;
-      flex-shrink: 0;
-      transition: border-color 0.2s, background 0.2s;
-      gap: 0.15rem;
-    }
-
-    .tier-nav-item:hover {
-      border-bottom-color: var(--teal-dim);
-      background: rgba(45, 212, 191, 0.04);
-    }
-
-    .tier-nav-item.active {
-      border-bottom-color: var(--teal);
-    }
-
-    .tier-nav-num {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-    }
-
+    .tier-nav-item { display: flex; flex-direction: column; justify-content: center; padding: 0.85rem 1.25rem; text-decoration: none; border-bottom: 2px solid transparent; flex-shrink: 0; transition: border-color 0.2s, background 0.2s; gap: 0.15rem; }
+    .tier-nav-item:hover { border-bottom-color: var(--teal-dim); background: rgba(45, 212, 191, 0.04); }
+    .tier-nav-item.active { border-bottom-color: var(--teal); }
+    .tier-nav-num { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); }
     .tier-nav-item.active .tier-nav-num { color: var(--teal); }
-
-    .tier-nav-name {
-      font-family: var(--head);
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      letter-spacing: 0.02em;
-    }
-
-    .tier-nav-item:hover .tier-nav-name,
-    .tier-nav-item.active .tier-nav-name { color: var(--text); }
-
-    .tier-nav-divider {
-      width: 1px;
-      background: var(--border);
-      margin: 0.6rem 0;
-      flex-shrink: 0;
-    }
-
-    .tier-nav-extra {
-      display: flex;
-      align-items: center;
-      margin-left: auto;
-      flex-shrink: 0;
-    }
-
-    @media (max-width: 600px) {
-      .tier-nav-item { padding: 0.75rem 1rem; }
-      .tier-nav-name { font-size: 0.75rem; }
-    }
+    .tier-nav-name { font-family: var(--head); font-size: 0.8rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.02em; }
+    .tier-nav-item:hover .tier-nav-name, .tier-nav-item.active .tier-nav-name { color: var(--text); }
+    .tier-nav-divider { width: 1px; background: var(--border); margin: 0.6rem 0; flex-shrink: 0; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      .install-grid        { grid-template-columns: 1fr; }
-      .subscription-grid   { grid-template-columns: 1fr; }
+      .install-grid { grid-template-columns: 1fr; }
       .install-card.featured { border-left: none; border-top: 2px solid var(--teal); }
     }
-
-    @media (max-width: 540px) {
-      .services-grid { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 600px) { .tier-nav-item { padding: 0.75rem 1rem; } .tier-nav-name { font-size: 0.75rem; } }
+    @media (max-width: 540px) { .services-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="index.html" class="nav-logo">
-      <span class="logo-bracket">[</span>NET<span>WATCH</span><span class="logo-bracket">]</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="services.html" class="active">Services</a></li>
-      <li><a href="index.html#how-it-works">How It Works</a></li>
-      <li><a href="why.html">Why NetWatch?</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html" class="nav-cta">Get Started</a></li>
-    </ul>
-    <button class="nav-hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="services.html" onclick="toggleMenu()">Services</a>
-    <a href="index.html#how-it-works" onclick="toggleMenu()">How It Works</a>
-    <a href="why.html" onclick="toggleMenu()">Why NetWatch?</a>
-    <a href="about.html" onclick="toggleMenu()">About</a>
-    <a href="contact.html" class="nav-cta" onclick="toggleMenu()">Get Started</a>
-  </div>
+  <div id="site-nav" data-active="services"></div>
 
   <!-- ── STICKY TIER NAV ── -->
   <div class="tier-nav" id="tierNav">
@@ -566,11 +125,10 @@
         <span class="tier-nav-num">Video</span>
         <span class="tier-nav-name">Demonstration</span>
       </a>
-       <div class="tier-nav-divider"></div>
-      </div>
     </div>
   </div>
-    <div style="max-width: 1100px; margin: 0 auto; padding: 2rem 2rem 0;">
+
+  <div style="max-width: 1100px; margin: 0 auto; padding: 2rem 2rem 0;">
     <div class="breadcrumb">
       <a href="index.html">Home</a>
       <span>/</span>
@@ -578,7 +136,6 @@
     </div>
   </div>
 
-  <!-- ── PAGE HEADER ── -->
   <div class="page-header">
     <p class="page-eyebrow">What We Do</p>
     <h1>Services that build on <em>each other.</em></h1>
@@ -612,160 +169,76 @@
     </div>
   </section>
 
-  <!-- ── TIER 1 SERVICES ── -->
+  <!-- ── TIER 1 ── -->
   <section class="section" id="tier-1" style="padding-top: 0; padding-bottom: 2rem;">
     <div class="service-group">
-      <p class="service-group-label">
-        <span>Tier 1</span>
-        Foundation - always first
-      </p>
+      <p class="service-group-label"><span>Tier 1</span> Foundation - always first</p>
       <div class="services-grid">
         <div class="service-card">
-          <div class="service-card-header">
-            <div class="service-icon">01</div>
-            <h3>Connectivity & Coverage Audit</h3>
-          </div>
-          <p>
-            A systematic assessment of your current network: throughput vs. your plan speed,
-            Wi-Fi coverage and dead zones, channel interference, ISP equipment performance,
-            and router placement. Findings are documented in writing.
-          </p>
+          <div class="service-card-header"><div class="service-icon">01</div><h3>Connectivity & Coverage Audit</h3></div>
+          <p>A systematic assessment of your current network: throughput vs. your plan speed, Wi-Fi coverage and dead zones, channel interference, ISP equipment performance, and router placement. Findings are documented in writing.</p>
           <p class="service-note">Produces a written findings doc and recommendations</p>
         </div>
         <div class="service-card">
-          <div class="service-card-header">
-            <div class="service-icon">→</div>
-            <h3>Hardware Capability Assessment</h3>
-          </div>
-          <p>
-            Part of every Tier 1 audit. We determine what your existing hardware is actually
-            capable of: which security features it supports, which it doesn't, and what
-            a targeted upgrade would unlock. No assumptions, no surprises later.
-          </p>
+          <div class="service-card-header"><div class="service-icon">→</div><h3>Hardware Capability Assessment</h3></div>
+          <p>Part of every Tier 1 audit. We determine what your existing hardware is actually capable of: which security features it supports, which it doesn't, and what a targeted upgrade would unlock. No assumptions, no surprises later.</p>
           <p class="service-note">Required before any Tier 2–4 work begins</p>
         </div>
       </div>
     </div>
 
-    <!-- ── TIER 2 SERVICES ── -->
+    <!-- ── TIER 2 ── -->
     <div class="service-group" id="tier-2">
-      <p class="service-group-label">
-        <span>Tier 2</span>
-        Coverage & Infrastructure
-      </p>
+      <p class="service-group-label"><span>Tier 2</span> Coverage & Infrastructure</p>
       <div class="services-grid">
         <div class="service-card">
-          <div class="service-card-header">
-            <div class="service-icon">◈</div>
-            <h3>Mesh System Integration</h3>
-          </div>
-          <p>
-            Design and deployment of a mesh Wi-Fi system appropriate to your space:
-            node placement, backhaul configuration, and integration with your existing
-            router or gateway. Dead zones eliminated, coverage mapped.
-          </p>
+          <div class="service-card-header"><div class="service-icon">◈</div><h3>Mesh System Integration</h3></div>
+          <p>Design and deployment of a mesh Wi-Fi system appropriate to your space: node placement, backhaul configuration, and integration with your existing router or gateway. Dead zones eliminated, coverage mapped.</p>
           <p class="service-note">Hardware purchase required if current coverage is insufficient</p>
         </div>
         <div class="service-card">
-          <div class="service-card-header">
-            <div class="service-icon">◈</div>
-            <h3>Firewall Configuration</h3>
-          </div>
-          <p>
-            Firewall rule sets configured for your environment: inbound and outbound
-            traffic controls, default-deny posture, port management, and logging.
-            Configured to what your hardware actually supports.
-          </p>
+          <div class="service-card-header"><div class="service-icon">◈</div><h3>Firewall Configuration</h3></div>
+          <p>Firewall rule sets configured for your environment: inbound and outbound traffic controls, default-deny posture, port management, and logging. Configured to what your hardware actually supports.</p>
           <p class="service-note">Scope depends on router capability established in Tier 1</p>
         </div>
         <div class="service-card">
-          <div class="service-card-header">
-            <div class="service-icon">◈</div>
-            <h3>VLAN Network Segmentation</h3>
-          </div>
-          <p>
-            Logical separation of your network into isolated segments: trusted devices,
-            IoT devices, guest access. Prevents lateral movement if a device is compromised.
-            Requires a VLAN-capable router and managed switch.
-          </p>
+          <div class="service-card-header"><div class="service-icon">◈</div><h3>VLAN Network Segmentation</h3></div>
+          <p>Logical separation of your network into isolated segments: trusted devices, IoT devices, guest access. Prevents lateral movement if a device is compromised. Requires a VLAN-capable router and managed switch.</p>
           <p class="service-note">Requires hardware capable of 802.1Q — confirmed in Tier 1</p>
         </div>
         <div class="service-card">
-          <div class="service-card-header">
-            <div class="service-icon">◈</div>
-            <h3>VPN Implementation</h3>
-          </div>
-          <p>
-            Secure remote access configuration: either client-to-site VPN for accessing
-            your home network remotely, or site-to-site for connecting multiple locations.
-            Deployed and tested to confirm working.
-          </p>
+          <div class="service-card-header"><div class="service-icon">◈</div><h3>VPN Implementation</h3></div>
+          <p>Secure remote access configuration: either client-to-site VPN for accessing your home network remotely, or site-to-site for connecting multiple locations. Deployed and tested to confirm working.</p>
           <p class="service-note">Remote access configuration included</p>
         </div>
         <div class="service-card">
-          <div class="service-card-header">
-            <div class="service-icon">◈</div>
-            <h3>Hardware Recommendations & Sourcing</h3>
-          </div>
-          <p>
-            Specific, justified hardware recommendations based on your audit findings and
-            goals, for your specific network architecture, never a generic list. 
-            We standardize on known, tested equipment so the
-            support surface stays manageable and outcomes are predictable.
-          </p>
+          <div class="service-card-header"><div class="service-icon">◈</div><h3>Hardware Recommendations & Sourcing</h3></div>
+          <p>Specific, justified hardware recommendations based on your audit findings and goals, for your specific network architecture, never a generic list. We standardize on known, tested equipment so the support surface stays manageable and outcomes are predictable.</p>
           <p class="service-note">Written recommendation provided regardless of whether you proceed with NetWatch or not</p>
         </div>
         <div class="service-card">
-          <div class="service-card-header">
-            <div class="service-icon">◈</div>
-            <h3>Security Architecture Advising</h3>
-          </div>
-          <p>
-            A broader look at your security posture: what's well-configured, what's
-            exposed, and what the realistic threat vectors are for your environment.
-            Plain language, no alarmism, actionable output.
-          </p>
+          <div class="service-card-header"><div class="service-icon">◈</div><h3>Security Architecture Advising</h3></div>
+          <p>A broader look at your security posture: what's well-configured, what's exposed, and what the realistic threat vectors are for your environment. Plain language, no alarmism, actionable output.</p>
           <p class="service-note">Standalone engagement or included with other Tier 2 work</p>
         </div>
       </div>
     </div>
 
-    <!-- ── TIER 3 SERVICES ── -->
+    <!-- ── TIER 3 ── -->
     <div class="service-group" id="tier-3">
-      <p class="service-group-label">
-        <span class="t3">Tier 3</span>
-        DNS Layer - no router upgrade required
-      </p>
+      <p class="service-group-label"><span class="t3">Tier 3</span> DNS Layer - no router upgrade required</p>
       <div class="services-grid">
         <div class="service-card">
-          <div class="service-card-header">
-            <div class="service-icon">⬡</div>
-            <h3>Recursive DNS Deployment</h3>
-          </div>
-          <p>
-            Pi-hole with Unbound deployed on a Raspberry Pi you own. Network-wide ad and
-            tracker blocking for all devices using DHCP-assigned DNS, fully recursive
-            resolution with no third-party resolver dependency, and DNSSEC validation.
-            Devices with hardcoded DNS settings can attempt to bypass Pi-hole — full
-            enforcement requires a router capable of NAT port redirection, which is
-            assessed and addressed in Tier 1 and Tier 2.
-          </p>
+          <div class="service-card-header"><div class="service-icon">⬡</div><h3>Recursive DNS Deployment</h3></div>
+          <p>Pi-hole with Unbound deployed on a Raspberry Pi you own. Network-wide ad and tracker blocking for all devices using DHCP-assigned DNS, fully recursive resolution with no third-party resolver dependency, and DNSSEC validation. Devices with hardcoded DNS settings can attempt to bypass Pi-hole — full enforcement requires a router capable of NAT port redirection, which is assessed and addressed in Tier 1 and Tier 2.</p>
           <p class="service-note">Works with your existing router, but bypass enforcement depends on router capability</p>
         </div>
         <div class="service-card">
-          <div class="service-card-header">
-            <div class="service-icon">⬡</div>
-            <h3>DNS Analytics & Query Logging</h3>
-          </div>
-          <p>
-            90-day query history, per-device analytics, blocked domain tracking, and
-            health scoring across all devices on your network. Surfaces anomalous DNS
-            behavior: devices querying unusual domains, NXDOMAIN spikes, bypass attempts.
-          </p>
+          <div class="service-card-header"><div class="service-icon">⬡</div><h3>DNS Analytics & Query Logging</h3></div>
+          <p>90-day query history, per-device analytics, blocked domain tracking, and health scoring across all devices on your network. Surfaces anomalous DNS behavior: devices querying unusual domains, NXDOMAIN spikes, bypass attempts.</p>
           <p class="service-note">Included with DNS deployment</p>
         </div>
       </div>
-
       <div class="ownership-note" style="margin-top: 1.25rem; margin-bottom: 0;">
         <p>
           <strong>Open source, no licensing fees.</strong> Pi-hole and Unbound are open source
@@ -782,118 +255,53 @@
         <p>
           After 30 days, support continues on a per-engagement basis. Options at that
           point are discussed directly but there's no obligation to continue and no
-          automatic charges. There is an option for a monthly retainer to have dedicated 
+          automatic charges. There is an option for a monthly retainer to have dedicated
           IT helpdesk for your network to provide you peace of mind, or a 'banked' approach with a set lump
-          payment made at one time to be used during any networking isues in the future, at a set rate
-          per hour. We strive to offer flexibility to find what works best for you. 
+          payment made at one time to be used during any networking issues in the future, at a set rate
+          per hour. We strive to offer flexibility to find what works best for you.
         </p>
       </div>
     </div>
 
-    <!-- ── TIER 4 SERVICES ── -->
+    <!-- ── TIER 4 ── -->
     <div class="service-group" id="tier-4" style="margin-bottom: 0;">
-      <p class="service-group-label">
-        <span class="t4">Tier 4</span>
-        NetWatch IDS - full deployment
-      </p>
+      <p class="service-group-label"><span class="t4">Tier 4</span> NetWatch IDS - full deployment</p>
       <div class="services-grid">
         <div class="service-card">
-          <div class="service-card-header">
-            <div class="service-icon">▣</div>
-            <h3>Suricata IDS Deployment</h3>
-          </div>
-          <p>
-            Suricata intrusion detection system deployed on a dedicated Raspberry Pi,
-            configured for your network, with both signature-based and heuristic detection.
-            Passively monitors all traffic via SPAN port; meaning no inline impact, no performance
-            degradation, and no single point of failure.
-          </p>
+          <div class="service-card-header"><div class="service-icon">▣</div><h3>Suricata IDS Deployment</h3></div>
+          <p>Suricata intrusion detection system deployed on a dedicated Raspberry Pi, configured for your network, with both signature-based and heuristic detection. Passively monitors all traffic via SPAN port; meaning no inline impact, no performance degradation, and no single point of failure.</p>
           <p class="service-note">Requires managed switch for SPAN port mirroring</p>
         </div>
         <div class="service-card">
-          <div class="service-card-header">
-            <div class="service-icon">▣</div>
-            <h3>NetWatch Dashboard</h3>
-          </div>
-          <p>
-            Purpose-built monitoring dashboard unifying Suricata IDS data and Pi-hole
-            DNS telemetry into a single operational view. Real-time alert feed, geographic
-            traffic intelligence, device inventory and discovery, historical trends,
-            and per-IP investigation with combined DNS and network context.
-          </p>
+          <div class="service-card-header"><div class="service-icon">▣</div><h3>NetWatch Dashboard</h3></div>
+          <p>Purpose-built monitoring dashboard unifying Suricata IDS data and Pi-hole DNS telemetry into a single operational view. Real-time alert feed, geographic traffic intelligence, device inventory and discovery, historical trends, and per-IP investigation with combined DNS and network context.</p>
           <p class="service-note">DNS telemetry requires Tier 3 deployment</p>
         </div>
         <div class="service-card">
-          <div class="service-card-header">
-            <div class="service-icon">▣</div>
-            <h3>Device Inventory & Discovery</h3>
-          </div>
-          <p>
-            Continuous monitoring of your network for new, returning, and unknown devices.
-            Every device that appears on your network is flagged, timestamped, and logged.
-            Named device registry maintained and updated over time.
-          </p>
+          <div class="service-card-header"><div class="service-icon">▣</div><h3>Device Inventory & Discovery</h3></div>
+          <p>Continuous monitoring of your network for new, returning, and unknown devices. Every device that appears on your network is flagged, timestamped, and logged. Named device registry maintained and updated over time.</p>
           <p class="service-note">Included with NetWatch deployment</p>
         </div>
         <div class="service-card">
-          <div class="service-card-header">
-            <div class="service-icon">▣</div>
-            <h3>Geographic Traffic Intelligence</h3>
-          </div>
-          <p>
-            All external connections mapped by country, city, and threat classification.
-            Connection volume, first and last seen timestamps, protocol breakdown, and
-            per-IP investigation which are all resolved locally with no external API dependency.
-          </p>
+          <div class="service-card-header"><div class="service-icon">▣</div><h3>Geographic Traffic Intelligence</h3></div>
+          <p>All external connections mapped by country, city, and threat classification. Connection volume, first and last seen timestamps, protocol breakdown, and per-IP investigation which are all resolved locally with no external API dependency.</p>
           <p class="service-note">Included with NetWatch deployment</p>
         </div>
-        
         <div class="service-card">
-  <div class="service-card-header">
-    <div class="service-icon">▣</div>
-    <h3>Anomaly & Behavioral Detection</h3>
-  </div>
-  <p>
-    Beyond signature matching, NetWatch establishes a behavioral baseline for
-    your network and flags deviations: a device making ten times its normal
-    DNS queries, traffic to an unusual country at 3am, a new device appearing
-    where it shouldn't. These events don't match any known signature.
-    They don't need to. Abnormal is enough.
-  </p>
-  <p class="service-note">Operates alongside signature detection & covers what signatures can't, to provide full coverage</p>
-</div>
-
-<div class="service-card">
-  <div class="service-card-header">
-    <div class="service-icon">▣</div>
-    <h3>Alert History & Trend Analysis</h3>
-  </div>
-  <p>
-    A single alert is an event. A pattern of alerts is a story. NetWatch maintains
-    a full historical record of alert activity: recurring triggers from the same
-    source, spikes at unusual hours, slow-burn behavior that only becomes visible
-    over days or weeks. Trend data is what separates a monitoring system from
-    a simple alarm.
-  </p>
-  <p class="service-note">Included with NetWatch deployment</p>
-  </div>
-</div>
-
-      <!-- DETECTION CALLOUT -->
+          <div class="service-card-header"><div class="service-icon">▣</div><h3>Anomaly & Behavioral Detection</h3></div>
+          <p>Beyond signature matching, NetWatch establishes a behavioral baseline for your network and flags deviations: a device making ten times its normal DNS queries, traffic to an unusual country at 3am, a new device appearing where it shouldn't. These events don't match any known signature. They don't need to. Abnormal is enough.</p>
+          <p class="service-note">Operates alongside signature detection & covers what signatures can't, to provide full coverage</p>
+        </div>
+        <div class="service-card">
+          <div class="service-card-header"><div class="service-icon">▣</div><h3>Alert History & Trend Analysis</h3></div>
+          <p>A single alert is an event. A pattern of alerts is a story. NetWatch maintains a full historical record of alert activity: recurring triggers from the same source, spikes at unusual hours, slow-burn behavior that only becomes visible over days or weeks. Trend data is what separates a monitoring system from a simple alarm.</p>
+          <p class="service-note">Included with NetWatch deployment</p>
+        </div>
+      </div>
       <div class="hardware-callout" style="margin-top: 1.25rem; margin-bottom: 0; border-color: var(--teal-dim);">
-        <p class="hardware-callout-label" style="color: var(--teal);">
-          Detection, not prevention
-        </p>
-        <p>
-          NetWatch is an IDS, an intrusion <strong>detection</strong> system. It sees everything
-          on your network and alerts when something looks wrong. It does not block traffic,
-          intercept connections, or stop attacks in progress. 
-        </p>
-        <p>
-          What it gives you is <strong>visibility you currently don't have</strong> via a continuous
-          record of network activity, anomaly detection, and alerting when something
-          needs attention. What happens after an alert is security recommendations, to resolve incidents and mitigate future occurrences.
-        </p>
+        <p class="hardware-callout-label" style="color: var(--teal);">Detection, not prevention</p>
+        <p>NetWatch is an IDS, an intrusion <strong>detection</strong> system. It sees everything on your network and alerts when something looks wrong. It does not block traffic, intercept connections, or stop attacks in progress.</p>
+        <p>What it gives you is <strong>visibility you currently don't have</strong> via a continuous record of network activity, anomaly detection, and alerting when something needs attention. What happens after an alert is security recommendations, to resolve incidents and mitigate future occurrences.</p>
       </div>
     </div>
   </section>
@@ -909,7 +317,6 @@
       you own the hardware permanently. The right configuration depends on your network
       size, existing equipment, and exactly how much visibility and control that you want.
     </p>
-
     <div class="install-grid">
       <div class="install-card">
         <p class="install-card-label">Standard</p>
@@ -925,7 +332,6 @@
           One-time hardware purchase and you own everything, forever.
         </p>
       </div>
-
       <div class="install-card">
         <p class="install-card-label">Full</p>
         <h3>Visibility & Granular Control</h3>
@@ -954,14 +360,12 @@
       subscription covers app access, updates, and ongoing support. Pricing is
       discussed directly and set per engagement. Tiers 1–2 have no ongoing fees.
     </p>
-
-    <!-- SINGLE LIVE SUBSCRIPTION TIER -->
     <div style="max-width: 560px;">
       <div class="sub-card featured">
         <p class="sub-card-label">NetWatch Standard</p>
         <h3>Monthly Subscription</h3>
         <p class="sub-card-desc">
-          NetWatch runs on <b>your</b> hardware, on <b>your</b> network, with no third party data collection nor 
+          NetWatch runs on <b>your</b> hardware, on <b>your</b> network, with no third party data collection nor
           cloud services utilized. The monthly subscription
           covers continued app access, software updates, maintenance, and a monthly
           report covering alert activity, traffic patterns, and any recommended
@@ -1020,8 +424,7 @@
       <p>
         <strong>What happens if you cancel.</strong> Your hardware is yours permanently:
         the Pi, the switch, all of it stays. Suricata is an open-source software, so it will
-        continues running and logging to
-        your device. The NetWatch application itself may, <i>or may NOT</i> continue operating on your hardware,
+        continue running and logging to your device. The NetWatch application itself may, <i>or may NOT</i> continue operating on your hardware,
         but all support definitively ends immediately on cancellation with no updates, no configuration
         changes, and no troubleshooting moving forward. Any issues with the application after that point
         are outside the scope of the service.
@@ -1049,7 +452,6 @@
       </div>
       <a href="demo.html" class="btn-ghost">View Video Demo →</a>
     </div>
-
     <div class="cta-row" style="padding: 2rem 0 0; max-width: 100%;">
       <p>Ready to start with a free consultation?</p>
       <a href="index.html#how-it-works" class="btn-ghost">See the Process</a>
@@ -1057,56 +459,29 @@
     </div>
   </section>
 
-  <footer>
-    <div class="footer-inner">
-      <span class="footer-brand">[NET<span>WATCH</span>]</span>
-      <ul class="footer-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="why.html">Why NetWatch</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="privacy.html">Privacy</a></li>
-      </ul>
-      <span class="footer-copy">&copy; 2026 NetWatch | All rights reserved</span>
-    </div>
-  </footer>
+  <footer id="site-footer"></footer>
 
+  <script src="assets/js/netwatch.js"></script>
   <script>
-    function toggleMenu() {
-      document.getElementById('mobileMenu').classList.toggle('open');
-    }
+    /* ── SERVICES: TIER NAV SCROLL SPY ── */
+    const tierNavItems = document.querySelectorAll('.tier-nav-item');
+    const tierSections = ['tier-1', 'tier-2', 'tier-3', 'tier-4', 'install-configs', 'subscription', 'demo'];
+    const stickyOffset = 64 + 56;
 
-    // Scroll spy — highlight active tier nav item
-    const navItems = document.querySelectorAll('.tier-nav-item');
-    const sections = ['tier-1', 'tier-2', 'tier-3', 'tier-4', 'install-configs', 'subscription', 'demo'];
-    const navHeight = 64 + 56; // main nav + tier nav height
-
-    function updateActiveNav() {
-      let current = sections[0];
-      const triggerLine = navHeight + (window.innerHeight * 0.25);
-      sections.forEach(id => {
+    function updateTierNav() {
+      let current = tierSections[0];
+      const triggerLine = stickyOffset + (window.innerHeight * 0.25);
+      tierSections.forEach(id => {
         const el = document.getElementById(id);
-        if (el && el.getBoundingClientRect().top <= triggerLine) {
-          current = id;
-        }
+        if (el && el.getBoundingClientRect().top <= triggerLine) current = id;
       });
-      navItems.forEach(item => {
-        const href = item.getAttribute('href');
-        item.classList.toggle('active', href === '#' + current);
+      tierNavItems.forEach(item => {
+        item.classList.toggle('active', item.getAttribute('href') === '#' + current);
       });
     }
 
-    window.addEventListener('scroll', updateActiveNav, { passive: true });
-    updateActiveNav();
-
-    document.addEventListener('click', function(e) {
-      const menu = document.getElementById('mobileMenu');
-      const hamburger = document.querySelector('.nav-hamburger');
-      if (menu.classList.contains('open') && !menu.contains(e.target) && !hamburger.contains(e.target)) {
-        menu.classList.remove('open');
-      }
-    });
+    window.addEventListener('scroll', updateTierNav, { passive: true });
+    updateTierNav();
   </script>
 
 </body>

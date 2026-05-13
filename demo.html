@@ -3,173 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <meta http-equiv="Content-Security-Policy"
-  content="
-    default-src 'self';
-    script-src 'self' 'unsafe-inline';
-    connect-src 'self';
-    frame-src 'self';
-    img-src 'self' data:;
-    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-    font-src 'self' https://fonts.gstatic.com;
-    worker-src 'self' blob:;
-  ">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; worker-src 'self' blob:;">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Demo | NetWatch</title>
   <link rel="stylesheet" href="assets/css/netwatch.css" />
-
   <style>
-    /* ── DEMO: LAYOUT ── */
-    .demo-content {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 2rem 2rem 4rem;
-    }
-
-    /* ── VIDEO CONTAINER ── */
-    .video-wrap {
-      position: relative;
-      width: 100%;
-      background: var(--bg2);
-      border: 1px solid var(--border2);
-      border-radius: 4px;
-      overflow: hidden;
-      margin: 2rem 0;
-    }
-
-    /* Placeholder shown until video is added */
-    .video-placeholder {
-      aspect-ratio: 16 / 9;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      background: var(--bg3);
-    }
-
-    .video-placeholder-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      border: 1px solid var(--border2);
-      background: var(--bg2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .video-placeholder-icon svg {
-      width: 22px;
-      height: 22px;
-      fill: var(--teal-dim);
-      margin-left: 3px;
-    }
-
-    .video-placeholder p {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-    }
-
-    /* Actual video — swap placeholder div for this when ready:
+    .demo-content { max-width: 900px; margin: 0 auto; padding: 2rem 2rem 4rem; }
+    .video-wrap { position: relative; width: 100%; background: var(--bg2); border: 1px solid var(--border2); border-radius: 4px; overflow: hidden; margin: 2rem 0; }
+    .video-placeholder { aspect-ratio: 16 / 9; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; background: var(--bg3); }
+    .video-placeholder-icon { width: 56px; height: 56px; border-radius: 50%; border: 1px solid var(--border2); background: var(--bg2); display: flex; align-items: center; justify-content: center; }
+    .video-placeholder-icon svg { width: 22px; height: 22px; fill: var(--teal-dim); margin-left: 3px; }
+    .video-placeholder p { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); }
+    /* Swap placeholder div for this when recording is ready:
        <video autoplay muted loop playsinline controls>
          <source src="assets/video/netwatch-demo.mp4" type="video/mp4" />
-       </video>
-    */
-    .video-wrap video {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    /* ── FEATURE CALLOUTS ── */
-    .demo-features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-      margin: 2rem 0;
-    }
-
-    .demo-feature {
-      background: var(--bg2);
-      padding: 1.5rem;
-    }
-
-    .demo-feature-label {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--teal);
-      margin-bottom: 0.5rem;
-    }
-
-    .demo-feature h3 {
-      font-family: var(--head);
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.4rem;
-      letter-spacing: 0.02em;
-    }
-
-    .demo-feature p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-    }
-
-    /* ── DISCLAIMER ── */
-    .demo-disclaimer {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.06em;
-      color: var(--text-dim);
-      line-height: 1.7;
-      padding: 1rem 1.25rem;
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      margin-bottom: 2rem;
-    }
-
-    .demo-disclaimer strong {
-      color: var(--text-muted);
-      font-weight: 500;
-    }
+       </video> */
+    .video-wrap video { width: 100%; height: auto; display: block; }
+    .demo-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; margin: 2rem 0; }
+    .demo-feature { background: var(--bg2); padding: 1.5rem; }
+    .demo-feature-label { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.5rem; }
+    .demo-feature h3 { font-family: var(--head); font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 0.4rem; letter-spacing: 0.02em; }
+    .demo-feature p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; }
+    .demo-disclaimer { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.06em; color: var(--text-dim); line-height: 1.7; padding: 1rem 1.25rem; border: 1px solid var(--border); border-radius: 3px; margin-bottom: 2rem; }
+    .demo-disclaimer strong { color: var(--text-muted); font-weight: 500; }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="index.html" class="nav-logo">
-      <span class="logo-bracket">[</span>NET<span>WATCH</span><span class="logo-bracket">]</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="services.html">Services</a></li>
-      <li><a href="index.html#how-it-works">How It Works</a></li>
-      <li><a href="why.html">Why NetWatch?</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html" class="nav-cta">Get Started</a></li>
-    </ul>
-    <button class="nav-hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="services.html" onclick="toggleMenu()">Services</a>
-    <a href="index.html#how-it-works" onclick="toggleMenu()">How It Works</a>
-    <a href="why.html" onclick="toggleMenu()">Why NetWatch?</a>
-    <a href="about.html" onclick="toggleMenu()">About</a>
-    <a href="contact.html" class="nav-cta" onclick="toggleMenu()">Get Started</a>
-  </div>
+  <div id="site-nav" data-active="demo"></div>
 
   <div style="max-width: 900px; margin: 0 auto; padding: 2rem 2rem 0;">
     <div class="breadcrumb">
@@ -214,7 +75,6 @@
       </div>
     </div>
 
-    <!-- WHAT YOU'RE SEEING -->
     <div class="demo-features">
       <div class="demo-feature">
         <p class="demo-feature-label">Alert Feed</p>
@@ -245,22 +105,21 @@
            automatically.</p>
       </div>
       <div class="demo-feature">
-  <p class="demo-feature-label">Network Traffic</p>
-  <h3>Traffic Overview</h3>
-  <p>Real-time traffic volume across your network: bytes in and out per device,
-     active connections, protocol distribution, and bandwidth utilization over
-     time. Gives context to alert activity; a spike in outbound traffic at 2am
-     means something different alongside a Suricata alert than it does alone.</p>
-</div>
-
-<div class="demo-feature">
-  <p class="demo-feature-label">Alert Trends</p>
-  <h3>Alert History & Patterns</h3>
-  <p>Alert activity over time rather than just the live feed. Recurring patterns
-     from the same source, escalating severity trends, and quiet periods versus
-     spikes. A single alert is an event; a week of the same alert firing nightly
-     is a story worth investigating.</p>
-</div>
+        <p class="demo-feature-label">Network Traffic</p>
+        <h3>Traffic Overview</h3>
+        <p>Real-time traffic volume across your network: bytes in and out per device,
+           active connections, protocol distribution, and bandwidth utilization over
+           time. Gives context to alert activity; a spike in outbound traffic at 2am
+           means something different alongside a Suricata alert than it does alone.</p>
+      </div>
+      <div class="demo-feature">
+        <p class="demo-feature-label">Alert Trends</p>
+        <h3>Alert History & Patterns</h3>
+        <p>Alert activity over time rather than just the live feed. Recurring patterns
+           from the same source, escalating severity trends, and quiet periods versus
+           spikes. A single alert is an event; a week of the same alert firing nightly
+           is a story worth investigating.</p>
+      </div>
     </div>
 
     <div class="cta-row" style="padding: 1rem 0 0; max-width: 100%;">
@@ -271,34 +130,8 @@
 
   </div>
 
-  <footer>
-    <div class="footer-inner">
-      <span class="footer-brand">[NET<span>WATCH</span>]</span>
-      <ul class="footer-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="why.html">Why NetWatch</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="privacy.html">Privacy</a></li>
-      </ul>
-      <span class="footer-copy">&copy; 2026 NetWatch | All rights reserved</span>
-    </div>
-  </footer>
-
-  <script>
-    function toggleMenu() {
-      document.getElementById('mobileMenu').classList.toggle('open');
-    }
-
-    document.addEventListener('click', function(e) {
-      const menu = document.getElementById('mobileMenu');
-      const hamburger = document.querySelector('.nav-hamburger');
-      if (menu.classList.contains('open') && !menu.contains(e.target) && !hamburger.contains(e.target)) {
-        menu.classList.remove('open');
-      }
-    });
-  </script>
+  <footer id="site-footer"></footer>
+  <script src="assets/js/netwatch.js"></script>
 
 </body>
 </html>

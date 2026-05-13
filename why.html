@@ -3,73 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <meta http-equiv="Content-Security-Policy"
-  content="
-    default-src 'self';
-    script-src 'self' 'unsafe-inline';
-    connect-src 'self';
-    frame-src 'self';
-    img-src 'self' data:;
-    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-    font-src 'self' https://fonts.gstatic.com;
-    worker-src 'self' blob:;
-  ">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; worker-src 'self' blob:;">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Why It Matters | NetWatch</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/netwatch.css" />
-
   <style>
-    /* ── WHY: PROBLEM GRID ── */
-    .problem-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-      margin-top: 1rem;
-    }
-
-    .problem-card {
-      background: var(--bg2);
-      padding: 2rem;
-      transition: background 0.2s;
-    }
-
+    .problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; margin-top: 1rem; }
+    .problem-card { background: var(--bg2); padding: 2rem; transition: background 0.2s; }
     .problem-card:hover { background: var(--bg3); }
-
-    .problem-icon {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      color: var(--amber);
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
+    .problem-icon { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.15em; color: var(--amber); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
     .problem-icon::before { content: '⚠'; font-size: 0.85rem; }
-
-    .problem-card h3 {
-      font-family: var(--head);
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.6rem;
-      letter-spacing: 0.02em;
-    }
-
-    .problem-card p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-    }
-
-    /* ── WHY: PAGE HEADER ANIMATIONS ── */
+    .problem-card h3 { font-family: var(--head); font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.6rem; letter-spacing: 0.02em; }
+    .problem-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; }
     .page-eyebrow { animation: fadeUp 0.4s ease both; }
     .page-header h1 { animation: fadeUp 0.4s 0.08s ease both; }
     .page-header .lead { animation: fadeUp 0.4s 0.16s ease both; }
@@ -77,29 +24,7 @@
 </head>
 <body>
 
-  <nav>
-    <a href="index.html" class="nav-logo">
-      <span class="logo-bracket">[</span>NET<span>WATCH</span><span class="logo-bracket">]</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="services.html">Services</a></li>
-      <li><a href="index.html#how-it-works">How It Works</a></li>
-      <li><a href="why.html">Why NetWatch?</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html" class="nav-cta">Get Started</a></li>
-    </ul>
-    <button class="nav-hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="services.html" onclick="toggleMenu()">Services</a>
-    <a href="index.html#how-it-works" onclick="toggleMenu()">How It Works</a>
-    <a href="why.html" onclick="toggleMenu()">Why NetWatch?</a>
-    <a href="about.html" onclick="toggleMenu()">About</a>
-    <a href="contact.html" class="nav-cta" onclick="toggleMenu()">Get Started</a>
-  </div>
+  <div id="site-nav" data-active="why"></div>
 
   <div class="page-header">
     <div class="breadcrumb">
@@ -114,7 +39,7 @@
       Your home office has a blinking light on a modem or router and a hope for the best.
       That gap is real and the threats are not theoretical. In this day and age, cyberattacks are no longer
       relegated to Enterprises or Government entities, but also at Small Office Home Office (SOHO) users and it
-      is more important than ever to take control of your security and privacy on the internet. 
+      is more important than ever to take control of your security and privacy on the internet.
     </p>
   </div>
 
@@ -151,8 +76,8 @@
         <p>Managed security providers (MSPs) serve large businesses who have dedicated IT budgets.
            The SOHO market has been left with off-the-shelf gear, a setup manual nobody reads,
            and the assumption that home networks don't need the same level of care. But they do. Particularly
-           with the prevalence of Work From Home/hybrid/remote style sof work, more and more home users have important
-           assets that need to be protected, and privacy in general is increasing in priority for many people! </p>
+           with the prevalence of Work From Home/hybrid/remote styles of work, more and more home users have important
+           assets that need to be protected, and privacy in general is increasing in priority for many people!</p>
       </div>
       <div class="problem-card">
         <p class="problem-icon">No Segmentation</p>
@@ -160,7 +85,7 @@
         <p>A typical home network is flat, which means your laptop, smart TV, thermostat,
            and security camera all share the same network, with no boundaries between them.
            If <u>one</u> device is compromised, everything else is reachable from it and Internet of Things (IoT)
-           devices are particularly vulnerable. SentinelOne has a solid article about IoT security <a href="https://www.sentinelone.com/cybersecurity-101/data-and-ai/iot-security-risks/"> here</a>.
+           devices are particularly vulnerable. SentinelOne has a solid article about IoT security <a href="https://www.sentinelone.com/cybersecurity-101/data-and-ai/iot-security-risks/">here</a>.
            Containment requires segmentation which most home routers do not provide, and can only be achieved through
            careful configuration.</p>
       </div>
@@ -168,7 +93,7 @@
         <p class="problem-icon">No Records or Logging</p>
         <h3>When something goes wrong, there's no timeline</h3>
         <p>Most people discover a network compromise from their bank, an email provider,
-           or a password reset that they didn't request, not from their own network and at that point the damage has already 
+           or a password reset that they didn't request, not from their own network and at that point the damage has already
            been done and you are playing catch-up!
            Without logging, there's no way to know when an issue started, what assets were potentially accessed,
            or how long this was happening. No record of course means no response.</p>
@@ -180,7 +105,7 @@
 
   <section class="section">
     <div class="context-block">
-        <h3>SOHO Network Visibility</h3>
+      <h3>SOHO Network Visibility</h3>
       <p>
         The most common threats on home and small office networks aren't sophisticated attacks.
         They're <strong>passive and persistent</strong>; devices that were never properly segmented,
@@ -188,7 +113,7 @@
         quietly over months, not typically in dramatic incidents. For example, one TV stick on my network
         was creating over 1,000 DNS requests per day in attempts to send telemetry data about my equipment, network,
         habits and other information back home to be collected, stored, and likely sold. All without my permission, and
-        without NetWatch I had no ability to identify these behaviors, so that I could stop that from happening. 
+        without NetWatch I had no ability to identify these behaviors, so that I could stop that from happening.
       </p>
       <p>
         NetWatch is a <strong>detection system, not a prevention system.</strong> It does not block
@@ -205,44 +130,44 @@
     </div>
 
     <div class="context-block">
-    <h3>Security Products</h3>
+      <h3>Security Products</h3>
       <p>
-    To be clear, consumer network security products do exist. <strong>Firewalla, Eero Secure,
-    Netgear Armor</strong> are legitimate tools that provide a meaningful
-    baseline for households that want something over nothing. However, they are one-size-fits all and place all of the onus on you, the user. 
-  </p>
-  <p>
-    What they are, without exception, is <strong>products.</strong> You research them, you buy them,
-    you install them yourself, you interpret the alerts yourself, and when something
-    looks wrong you spend hours trying to find an accurate answer. The detection they provide is largely
-    signature-based which means only known threats, known patterns, and known bad actors.
-    If it's in the database, it gets flagged. If it isn't, it doesn't.
-  </p>
-  <p>
-    NetWatch deploys a <strong>two-layer detection model.</strong> Suricata's
-    signature engine catches known threats against a continuously updated ruleset.
-    The proprietary heuristic layer catches everything else, based on behavioral deviations from your
-    network's established baseline that don't match any particular external signature and so they aren't limited in that way.
-    A device that suddenly triples its outbound connections at 2am is flagged
-    not because it matches a known pattern, but because it doesn't match
-    <em>your</em> pattern. That behavior is truly important and is what sets NetWatch apart! It is truly
-    a custom approach to security and privacy, that is specific to <em>your</em> network and activity. 
-  </p>
-  <p>
-    It also comes with a human. Every NetWatch deployment is preceded by a
-    connectivity and coverage audit, configured specifically for your hardware
-    and environment, and with the appropriate Tier is supported by direct access to the operator who built
-    and deployed the system. When you have a question, you're not opening a
-    ticket with a support team in a timezone you've never been to, instead
-    <strong>you're contacting the person who was in your home, knows your
-    network, and has been helping you protect it since day one.</strong>
-  </p>
-  <p>
-    That combination of heuristic and signature detection, purpose-built deployment,
-    and a direct operator relationship doesn't exist as an off-the-shelf product.
-    It exists as a service. That's what NetWatch is, and what makes it special.
-  </p>
-</div>
+        To be clear, consumer network security products do exist. <strong>Firewalla, Eero Secure,
+        Netgear Armor</strong> are legitimate tools that provide a meaningful
+        baseline for households that want something over nothing. However, they are one-size-fits all and place all of the onus on you, the user.
+      </p>
+      <p>
+        What they are, without exception, is <strong>products.</strong> You research them, you buy them,
+        you install them yourself, you interpret the alerts yourself, and when something
+        looks wrong you spend hours trying to find an accurate answer. The detection they provide is largely
+        signature-based which means only known threats, known patterns, and known bad actors.
+        If it's in the database, it gets flagged. If it isn't, it doesn't.
+      </p>
+      <p>
+        NetWatch deploys a <strong>two-layer detection model.</strong> Suricata's
+        signature engine catches known threats against a continuously updated ruleset.
+        The proprietary heuristic layer catches everything else, based on behavioral deviations from your
+        network's established baseline that don't match any particular external signature and so they aren't limited in that way.
+        A device that suddenly triples its outbound connections at 2am is flagged
+        not because it matches a known pattern, but because it doesn't match
+        <em>your</em> pattern. That behavior is truly important and is what sets NetWatch apart! It is truly
+        a custom approach to security and privacy, that is specific to <em>your</em> network and activity.
+      </p>
+      <p>
+        It also comes with a human. Every NetWatch deployment is preceded by a
+        connectivity and coverage audit, configured specifically for your hardware
+        and environment, and with the appropriate Tier is supported by direct access to the operator who built
+        and deployed the system. When you have a question, you're not opening a
+        ticket with a support team in a timezone you've never been to, instead
+        <strong>you're contacting the person who was in your home, knows your
+        network, and has been helping you protect it since day one.</strong>
+      </p>
+      <p>
+        That combination of heuristic and signature detection, purpose-built deployment,
+        and a direct operator relationship doesn't exist as an off-the-shelf product.
+        It exists as a service. That's what NetWatch is, and what makes it special.
+      </p>
+    </div>
   </section>
 
   <div class="cta-row">
@@ -251,34 +176,8 @@
     <a href="contact.html" class="btn-primary">Book a Consultation</a>
   </div>
 
-  <footer>
-    <div class="footer-inner">
-      <span class="footer-brand">[NET<span>WATCH</span>]</span>
-      <ul class="footer-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="why.html">Why NetWatch</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="privacy.html">Privacy</a></li>
-      </ul>
-      <span class="footer-copy">&copy; 2026 NetWatch | All rights reserved</span>
-    </div>
-  </footer>
-
-  <script>
-    function toggleMenu() {
-      document.getElementById('mobileMenu').classList.toggle('open');
-    }
-
-    document.addEventListener('click', function(e) {
-      const menu = document.getElementById('mobileMenu');
-      const hamburger = document.querySelector('.nav-hamburger');
-      if (menu.classList.contains('open') && !menu.contains(e.target) && !hamburger.contains(e.target)) {
-        menu.classList.remove('open');
-      }
-    });
-  </script>
+  <footer id="site-footer"></footer>
+  <script src="assets/js/netwatch.js"></script>
 
 </body>
 </html>

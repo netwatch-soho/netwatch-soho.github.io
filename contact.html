@@ -3,316 +3,71 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <meta http-equiv="Content-Security-Policy"
-  content="
-    default-src 'self';
-    script-src 'self' 'unsafe-inline';
-    connect-src 'self';
-    frame-src 'self';
-    img-src 'self' data:;
-    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-    font-src 'self' https://fonts.gstatic.com;
-    worker-src 'self' blob:;
-  ">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; worker-src 'self' blob:;">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Get Started | NetWatch</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/netwatch.css" />
-
   <style>
-    /* ── CONTACT: LAYOUT ── */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-      padding: 4rem 2rem 5rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    /* ── LEFT COLUMN ── */
-    .contact-left h1 {
-      font-family: var(--head);
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 700;
-      line-height: 1.1;
-      color: var(--text);
-      margin-bottom: 1.25rem;
-      animation: fadeUp 0.4s ease both;
-    }
-
-    .contact-left h1 em {
-      font-style: normal;
-      color: var(--teal);
-    }
-
-    .contact-left .lead {
-      font-size: 1rem;
-      color: var(--text-muted);
-      line-height: 1.8;
-      font-weight: 300;
-      margin-bottom: 2.5rem;
-      animation: fadeUp 0.4s 0.1s ease both;
-    }
-
-    /* ── EMAIL CTA ── */
-    .email-block {
-      background: var(--bg2);
-      border: 1px solid var(--border2);
-      border-radius: 4px;
-      padding: 1.75rem 2rem;
-      margin-bottom: 1.5rem;
-      animation: fadeUp 0.4s 0.15s ease both;
-    }
-
-    .email-block-label {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-bottom: 0.75rem;
-    }
-
-    .email-link {
-      font-family: var(--head);
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--teal);
-      text-decoration: none;
-      letter-spacing: 0.02em;
-      display: inline-block;
-      margin-bottom: 0.75rem;
-      transition: color 0.2s;
-    }
-
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; padding: 4rem 2rem 5rem; max-width: 1100px; margin: 0 auto; }
+    .contact-left h1 { font-family: var(--head); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; line-height: 1.1; color: var(--text); margin-bottom: 1.25rem; animation: fadeUp 0.4s ease both; }
+    .contact-left h1 em { font-style: normal; color: var(--teal); }
+    .contact-left .lead { font-size: 1rem; color: var(--text-muted); line-height: 1.8; font-weight: 300; margin-bottom: 2.5rem; animation: fadeUp 0.4s 0.1s ease both; }
+    .email-block { background: var(--bg2); border: 1px solid var(--border2); border-radius: 4px; padding: 1.75rem 2rem; margin-bottom: 1.5rem; animation: fadeUp 0.4s 0.15s ease both; }
+    .email-block-label { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.75rem; }
+    .email-link { font-family: var(--head); font-size: 1.15rem; font-weight: 600; color: var(--teal); text-decoration: none; letter-spacing: 0.02em; display: inline-block; margin-bottom: 0.75rem; transition: color 0.2s; }
     .email-link:hover { color: var(--teal-hover); }
-
-    .email-block p {
-      font-size: 0.85rem;
-      color: var(--text-dim);
-      line-height: 1.6;
-    }
-
-    /* ── CALENDLY PLACEHOLDER ── */
-    .calendly-placeholder {
-      background: var(--bg2);
-      border: 1px dashed var(--border2);
-      border-radius: 4px;
-      padding: 2rem;
-      text-align: center;
-      margin-bottom: 1.5rem;
-      animation: fadeUp 0.4s 0.2s ease both;
-    }
-
-    .calendly-placeholder-label {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-bottom: 0.6rem;
-    }
-
-    .calendly-placeholder p {
-      font-size: 0.85rem;
-      color: var(--text-dim);
-      line-height: 1.6;
-    }
-
-    /* ── WHAT TO INCLUDE ── */
-    .include-block {
-      animation: fadeUp 0.4s 0.25s ease both;
-    }
-
-    .include-label {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .include-label::before {
-      content: '';
-      display: block;
-      width: 16px;
-      height: 1px;
-      background: var(--text-dim);
-    }
-
-    .include-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-
-    .include-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    .include-list li::before {
-      content: '—';
-      font-family: var(--mono);
-      color: var(--teal-dim);
-      flex-shrink: 0;
-      margin-top: 0.05rem;
-    }
-
-    /* ── RIGHT COLUMN ── */
-    .contact-right {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      animation: fadeUp 0.4s 0.2s ease both;
-    }
-
-    /* ── PROCESS CARDS ── */
-    .process-step {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 1.5rem;
-      display: flex;
-      gap: 1.25rem;
-      align-items: flex-start;
-      transition: border-color 0.2s;
-    }
-
+    .email-block p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.6; }
+    .calendly-placeholder { background: var(--bg2); border: 1px dashed var(--border2); border-radius: 4px; padding: 2rem; text-align: center; margin-bottom: 1.5rem; animation: fadeUp 0.4s 0.2s ease both; }
+    .calendly-placeholder-label { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.6rem; }
+    .calendly-placeholder p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.6; }
+    .include-block { animation: fadeUp 0.4s 0.25s ease both; }
+    .include-label { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; }
+    .include-label::before { content: ''; display: block; width: 16px; height: 1px; background: var(--text-dim); }
+    .include-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .include-list li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+    .include-list li::before { content: '—'; font-family: var(--mono); color: var(--teal-dim); flex-shrink: 0; margin-top: 0.05rem; }
+    .contact-right { display: flex; flex-direction: column; gap: 1.25rem; animation: fadeUp 0.4s 0.2s ease both; }
+    .process-step { background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; padding: 1.5rem; display: flex; gap: 1.25rem; align-items: flex-start; transition: border-color 0.2s; }
     .process-step:hover { border-color: var(--teal-dim); }
-
-    .process-num {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      font-weight: 500;
-      color: var(--bg);
-      background: var(--teal-dim);
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .process-step-content h3 {
-      font-family: var(--head);
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text);
-      letter-spacing: 0.02em;
-      margin-bottom: 0.35rem;
-    }
-
-    .process-step-content p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.65;
-    }
-
-    .process-step-content p strong {
-      color: var(--teal);
-      font-weight: 500;
-    }
-
-    /* ── LOCAL NOTE ── */
-    .local-note {
-      background: var(--teal-glow);
-      border: 1px solid var(--teal-dim);
-      border-radius: 4px;
-      padding: 1.25rem 1.5rem;
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-    }
-
-    .local-note strong {
-      color: var(--teal);
-      font-weight: 500;
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-        padding: 2.5rem 1.5rem 4rem;
-      }
-    }
+    .process-num { font-family: var(--mono); font-size: 0.65rem; font-weight: 500; color: var(--bg); background: var(--teal-dim); width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .process-step-content h3 { font-family: var(--head); font-size: 0.95rem; font-weight: 600; color: var(--text); letter-spacing: 0.02em; margin-bottom: 0.35rem; }
+    .process-step-content p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.65; }
+    .process-step-content p strong { color: var(--teal); font-weight: 500; }
+    .local-note { background: var(--teal-glow); border: 1px solid var(--teal-dim); border-radius: 4px; padding: 1.25rem 1.5rem; font-size: 0.875rem; color: var(--text-muted); line-height: 1.7; }
+    .local-note strong { color: var(--teal); font-weight: 500; }
+    @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; padding: 2.5rem 1.5rem 4rem; } }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="index.html" class="nav-logo">
-      <span class="logo-bracket">[</span>NET<span>WATCH</span><span class="logo-bracket">]</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="services.html">Services</a></li>
-      <li><a href="index.html#how-it-works">How It Works</a></li>
-      <li><a href="why.html">Why NetWatch?</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html" class="nav-cta active">Get Started</a></li>
-    </ul>
-    <button class="nav-hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="services.html" onclick="toggleMenu()">Services</a>
-    <a href="index.html#how-it-works" onclick="toggleMenu()">How It Works</a>
-    <a href="why.html" onclick="toggleMenu()">Why NetWatch?</a>
-    <a href="about.html" onclick="toggleMenu()">About</a>
-    <a href="contact.html" class="nav-cta" onclick="toggleMenu()">Get Started</a>
-  </div>
+  <div id="site-nav" data-active="contact"></div>
 
   <div class="contact-grid">
 
-    <!-- ── LEFT: CTA ── -->
     <div class="contact-left">
-
       <div class="breadcrumb">
         <a href="index.html">Home</a>
         <span>/</span>
         <span style="color: var(--text-muted);">Get Started</span>
       </div>
-
       <h1>Let's talk about<br />your <em>network.</em></h1>
-
       <p class="lead">
-        The free consultation is a 20–30 minute call. No sales pitch, 
+        The free consultation is a 20–30 minute call. No sales pitch,
         just an honest conversation about your current setup, what you're
         trying to address, and what tier of NetWatch is the right fit for you.
       </p>
-
-      <!-- EMAIL -->
       <div class="email-block">
         <p class="email-block-label">Send us a message</p>
         <a href="mailto:netwatchadvanced@proton.me" class="email-link">netwatchadvanced@proton.me</a>
         <p>We respond within 24 hours. If you don't hear back, check your spam folder as Proton-to-Proton mail is fine but Proton-to-Gmail sometimes misfires.</p>
       </div>
-
       <!-- CALENDLY PLACEHOLDER — swap this div for the Calendly embed script when ready -->
       <div class="calendly-placeholder" id="calendly-embed">
         <p class="calendly-placeholder-label">Or book a time directly</p>
         <p>Online scheduling coming soon, drop us an email for now and we'll find a time that works for you!</p>
       </div>
-
-      <!-- WHAT TO INCLUDE -->
       <div class="include-block">
         <p class="include-label">What to include in your message</p>
         <ul class="include-list">
@@ -322,16 +77,12 @@
           <li>Any urgency: if something feels actively wrong, say so</li>
         </ul>
       </div>
-
     </div>
 
-    <!-- ── RIGHT: WHAT HAPPENS NEXT ── -->
     <div class="contact-right">
-
       <div style="margin-bottom: 0.5rem;">
         <p class="include-label" style="margin-bottom: 1rem;">What happens next</p>
       </div>
-
       <div class="process-step">
         <div class="process-num">01</div>
         <div class="process-step-content">
@@ -339,7 +90,6 @@
           <p>Send a brief email with your setup and what you're looking to address. No technical expertise required, plain English is fine.</p>
         </div>
       </div>
-
       <div class="process-step">
         <div class="process-num">02</div>
         <div class="process-step-content">
@@ -347,7 +97,6 @@
           <p>We'll confirm we can serve your area and schedule a free <strong>20–30 minute call</strong> to talk through your situation.</p>
         </div>
       </div>
-
       <div class="process-step">
         <div class="process-num">03</div>
         <div class="process-step-content">
@@ -355,7 +104,6 @@
           <p>We discuss your network, your concerns, and which tier of service actually makes sense for you. <strong>No commitment required.</strong></p>
         </div>
       </div>
-
       <div class="process-step">
         <div class="process-num">04</div>
         <div class="process-step-content">
@@ -363,7 +111,6 @@
           <p>After the call you receive a written summary of what we'd recommend and why, which is yours to keep regardless of whether you move forward with NetWatch or not.</p>
         </div>
       </div>
-
       <div class="local-note">
         <strong>In-person deployments only.</strong> NetWatch installs require an on-site visit,
         we don't do remote-only setup. We currently serve the
@@ -371,38 +118,12 @@
         coverage may expand in the future, and we would still be happy to provide a consultation on how you
         can improve your privacy and security, regardless of location.
       </div>
-
     </div>
+
   </div>
 
-  <footer>
-    <div class="footer-inner">
-      <span class="footer-brand">[NET<span>WATCH</span>]</span>
-      <ul class="footer-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="why.html">Why NetWatch</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="privacy.html">Privacy</a></li>
-      </ul>
-      <span class="footer-copy">&copy; 2026 NetWatch | All rights reserved</span>
-    </div>
-  </footer>
-
-  <script>
-    function toggleMenu() {
-      document.getElementById('mobileMenu').classList.toggle('open');
-    }
-
-    document.addEventListener('click', function(e) {
-      const menu = document.getElementById('mobileMenu');
-      const hamburger = document.querySelector('.nav-hamburger');
-      if (menu.classList.contains('open') && !menu.contains(e.target) && !hamburger.contains(e.target)) {
-        menu.classList.remove('open');
-      }
-    });
-  </script>
+  <footer id="site-footer"></footer>
+  <script src="assets/js/netwatch.js"></script>
 
 </body>
 </html>

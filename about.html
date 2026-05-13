@@ -3,335 +3,55 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <meta http-equiv="Content-Security-Policy"
-  content="
-    default-src 'self';
-    script-src 'self' 'unsafe-inline';
-    connect-src 'self';
-    frame-src 'self';
-    img-src 'self' data:;
-    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-    font-src 'self' https://fonts.gstatic.com;
-    worker-src 'self' blob:;
-  ">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; worker-src 'self' blob:;">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About — NetWatch</title>
+  <title>About | NetWatch</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/netwatch.css" />
-
   <style>
-    /* ── ABOUT: LAYOUT ── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 4rem;
-      align-items: start;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 4rem 2rem 5rem;
-    }
-
-    /* ── LEFT: IDENTITY ── */
-    .about-identity {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      animation: fadeUp 0.4s ease both;
-    }
-
-    .photo-placeholder {
-      width: 100%;
-      aspect-ratio: 1;
-      background: var(--bg2);
-      border: 1px solid var(--border2);
-      border-radius: 4px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
-    }
-
-    .photo-placeholder-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: var(--bg3);
-      border: 1px solid var(--border2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .photo-placeholder-icon svg {
-      width: 24px;
-      height: 24px;
-      stroke: var(--text-dim);
-      fill: none;
-      stroke-width: 1.5;
-    }
-
-    .photo-placeholder-label {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-    }
-
-    .identity-name {
-      font-family: var(--head);
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: 0.02em;
-    }
-
-    .identity-title {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--teal);
-      margin-top: -0.75rem;
-    }
-
-    .identity-location {
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      letter-spacing: 0.08em;
-      color: var(--text-dim);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .identity-location::before {
-      content: '◎';
-      color: var(--teal-dim);
-      font-size: 0.7rem;
-    }
-
-    /* ── CREDENTIAL BLOCK ── */
-    .credential-block {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 1.25rem 1.5rem;
-    }
-
-    .credential-block-label {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-bottom: 1rem;
-    }
-
-    .credential-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.65rem;
-    }
-
-    .credential-list li {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-      display: flex;
-      align-items: flex-start;
-      gap: 0.6rem;
-    }
-
-    .credential-list li::before {
-      content: '▸';
-      color: var(--teal-dim);
-      font-size: 0.7rem;
-      flex-shrink: 0;
-      margin-top: 0.1rem;
-    }
-
-    .credential-list li span {
-      color: var(--text-dim);
-      font-size: 0.75rem;
-      display: block;
-      margin-top: 0.15rem;
-    }
-
-    /* ── RIGHT: CONTENT ── */
-    .about-content {
-      display: flex;
-      flex-direction: column;
-      gap: 2.5rem;
-      animation: fadeUp 0.4s 0.1s ease both;
-    }
-
-    .about-section-label {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--teal);
-      margin-bottom: 0.75rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .about-section-label::before {
-      content: '';
-      display: block;
-      width: 16px;
-      height: 1px;
-      background: var(--teal);
-    }
-
-    .about-block h2 {
-      font-family: var(--head);
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--text);
-      line-height: 1.2;
-      margin-bottom: 1rem;
-    }
-
-    .about-block h2 em {
-      font-style: normal;
-      color: var(--teal);
-    }
-
-    .about-block p {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      line-height: 1.85;
-      margin-bottom: 1rem;
-    }
-
+    .about-grid { display: grid; grid-template-columns: 300px 1fr; gap: 4rem; align-items: start; max-width: 1100px; margin: 0 auto; padding: 4rem 2rem 5rem; }
+    .about-identity { display: flex; flex-direction: column; gap: 1.5rem; animation: fadeUp 0.4s ease both; }
+    .photo-placeholder { width: 100%; aspect-ratio: 1; background: var(--bg2); border: 1px solid var(--border2); border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; }
+    .photo-placeholder-icon { width: 48px; height: 48px; border-radius: 50%; background: var(--bg3); border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; }
+    .photo-placeholder-icon svg { width: 24px; height: 24px; stroke: var(--text-dim); fill: none; stroke-width: 1.5; }
+    .photo-placeholder-label { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); }
+    .identity-name { font-family: var(--head); font-size: 1.4rem; font-weight: 700; color: var(--text); letter-spacing: 0.02em; }
+    .identity-title { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-top: -0.75rem; }
+    .identity-location { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; color: var(--text-dim); display: flex; align-items: center; gap: 0.4rem; }
+    .identity-location::before { content: '◎'; color: var(--teal-dim); font-size: 0.7rem; }
+    .credential-block { background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; padding: 1.25rem 1.5rem; }
+    .credential-block-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1rem; }
+    .credential-list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+    .credential-list li { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; display: flex; align-items: flex-start; gap: 0.6rem; }
+    .credential-list li::before { content: '▸'; color: var(--teal-dim); font-size: 0.7rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .about-content { display: flex; flex-direction: column; gap: 2.5rem; animation: fadeUp 0.4s 0.1s ease both; }
+    .about-section-label { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.6rem; }
+    .about-section-label::before { content: ''; display: block; width: 16px; height: 1px; background: var(--teal); }
+    .about-block h2 { font-family: var(--head); font-size: 1.4rem; font-weight: 700; color: var(--text); line-height: 1.2; margin-bottom: 1rem; }
+    .about-block h2 em { font-style: normal; color: var(--teal); }
+    .about-block p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.85; margin-bottom: 1rem; }
     .about-block p:last-child { margin-bottom: 0; }
-
-    .about-block p strong {
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    .about-divider {
-      height: 1px;
-      background: var(--border);
-    }
-
-    /* ── WHAT TO EXPECT ── */
-    .expect-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-      margin-top: 1rem;
-    }
-
-    .expect-card {
-      background: var(--bg2);
-      padding: 1.5rem;
-    }
-
-    .expect-card h3 {
-      font-family: var(--head);
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--text);
-      letter-spacing: 0.02em;
-      margin-bottom: 0.5rem;
-    }
-
-    .expect-card p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 0;
-    }
-
-    /* ── CTA ROW ── */
-    .about-cta {
-      background: var(--bg2);
-      border: 1px solid var(--border2);
-      border-radius: 4px;
-      padding: 1.75rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .about-cta p {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin: 0;
-      flex: 1;
-      min-width: 220px;
-    }
-
-    .about-cta p strong {
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    /* ── RESPONSIVE ── */
+    .about-block p strong { color: var(--text); font-weight: 500; }
+    .about-divider { height: 1px; background: var(--border); }
+    .expect-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; margin-top: 1rem; }
+    .expect-card { background: var(--bg2); padding: 1.5rem; }
+    .expect-card h3 { font-family: var(--head); font-size: 0.9rem; font-weight: 600; color: var(--text); letter-spacing: 0.02em; margin-bottom: 0.5rem; }
+    .expect-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 0; }
+    .about-cta { background: var(--bg2); border: 1px solid var(--border2); border-radius: 4px; padding: 1.75rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .about-cta p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; margin: 0; flex: 1; min-width: 220px; }
+    .about-cta p strong { color: var(--text); font-weight: 500; }
     @media (max-width: 860px) {
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-        padding: 2.5rem 1.5rem 4rem;
-      }
-
-      .about-identity {
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: flex-start;
-        gap: 1.5rem;
-      }
-
-      .photo-placeholder {
-        width: 120px;
-        aspect-ratio: 1;
-        flex-shrink: 0;
-      }
-
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; padding: 2.5rem 1.5rem 4rem; }
+      .about-identity { flex-direction: row; flex-wrap: wrap; align-items: flex-start; gap: 1.5rem; }
+      .photo-placeholder { width: 120px; aspect-ratio: 1; flex-shrink: 0; }
       .expect-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="index.html" class="nav-logo">
-      <span class="logo-bracket">[</span>NET<span>WATCH</span><span class="logo-bracket">]</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="services.html">Services</a></li>
-      <li><a href="index.html#how-it-works">How It Works</a></li>
-      <li><a href="why.html">Why NetWatch?</a></li>
-      <li><a href="about.html" class="active">About</a></li>
-      <li><a href="contact.html" class="nav-cta">Get Started</a></li>
-    </ul>
-    <button class="nav-hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="services.html" onclick="toggleMenu()">Services</a>
-    <a href="index.html#how-it-works" onclick="toggleMenu()">How It Works</a>
-    <a href="why.html" onclick="toggleMenu()">Why NetWatch?</a>
-    <a href="about.html" onclick="toggleMenu()">About</a>
-    <a href="contact.html" class="nav-cta" onclick="toggleMenu()">Get Started</a>
-  </div>
+  <div id="site-nav" data-active="about"></div>
 
   <div style="max-width: 1100px; margin: 0 auto; padding: 2rem 2rem 0;">
     <div class="breadcrumb">
@@ -343,9 +63,7 @@
 
   <div class="about-grid">
 
-    <!-- ── LEFT COLUMN ── -->
     <div class="about-identity">
-
       <div class="photo-placeholder">
         <div class="photo-placeholder-icon">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -355,67 +73,50 @@
         </div>
         <p class="photo-placeholder-label">Photo coming soon</p>
       </div>
-
       <div>
         <p class="identity-name">Perry Kingston</p><br>
         <p class="identity-title">Founder — NetWatch</p>
       </div>
-
       <p class="identity-location">Houston, Texas</p>
-
       <div class="credential-block">
         <p class="credential-block-label">Background</p>
         <ul class="credential-list">
-          <li>
-            B.S. Cybersecurity, Data Analytics concentration
-         
-          </li>
-          <li>
-            Google Cybersecurity Specialization
-          </li>
-          <li>
-            Google Advanced Data Analytics
-          </li>
-          <li>
-            Google IT Support Professional
-          </li>
-     
+          <li>B.S. Cybersecurity, Data Analytics concentration</li>
+          <li>Google Cybersecurity Specialization</li>
+          <li>Google Advanced Data Analytics</li>
+          <li>Google IT Support Professional</li>
         </ul>
       </div>
-
     </div>
 
-    <!-- ── RIGHT COLUMN ── -->
     <div class="about-content">
 
-      <!-- ORIGIN -->
       <div class="about-block">
         <p class="about-section-label">How this started:</p>
         <h2>Built for my own network.<br /><em>Then people started asking!</em></h2>
         <p>
-        After hardening my network and improving privacy by reducing telemetry and tracking, along with
+          After hardening my network and improving privacy by reducing telemetry and tracking, along with
           implementing fully recursive DNS resolution with cryptographic checks to ensure no tampering
           in transit, I realized I wanted even further visibility and insight into traffic on my LAN. This led
-          to my development of a dashboard that utilizes IDS logs for both signature matching of threats, 
-          along with an additional layer that creates a baseline of network behavior per device and alerts 
+          to my development of a dashboard that utilizes IDS logs for both signature matching of threats,
+          along with an additional layer that creates a baseline of network behavior per device and alerts
           on anomalous behavior. As I shared what I was doing with friends, family, and colleagues, more and more
-          people began expressing interest in how they could achieve the same level of security and privacy and 
-          asking if I would assist them. I recognized that Enterprises have entire organizations (MSPs) dedicated to their networking issues, 
-          but home users (SOHO) don't have assistance or options in the same manner and that's how we got here! 
+          people began expressing interest in how they could achieve the same level of security and privacy and
+          asking if I would assist them. I recognized that Enterprises have entire organizations (MSPs) dedicated to their networking issues,
+          but home users (SOHO) don't have assistance or options in the same manner and that's how we got here!
         </p>
         <p>
           The interest was genuine and unsolicited, which matters to me as it means
           my services earn a place in someone's home on its own merits, not because
           it was sold to them. That's still how I intend to operate, and I will always
-          prioritize privacy and security, for all of my Clients. Your data is not stored, 
+          prioritize privacy and security, for all of my Clients. Your data is not stored,
           aggregated, or sold in any way/shape/form and every decision made in architecting
-          NetWatch focused on user privacy at every step. 
+          NetWatch focused on user privacy at every step.
         </p>
       </div>
 
       <div class="about-divider"></div>
 
-      <!-- QUALIFICATIONS — translated -->
       <div class="about-block">
         <p class="about-section-label">What I've actually built</p>
         <h2>The same system running <em>on my own network.</em></h2>
@@ -436,18 +137,17 @@
 
       <div class="about-divider"></div>
 
-      <!-- WHAT TO EXPECT -->
       <div class="about-block">
         <p class="about-section-label">What to expect</p>
         <h2>Small by design. <em>Intentionally.</em></h2>
         <p>
-        I am very passionate about what I do, communicate clearly and honestly,
+          I am very passionate about what I do, communicate clearly and honestly,
           and truly want to help home users protect themselves online. You won't get a pushy
-          sales pitch, you will get open and honest conversations about benefits, and also limitations, 
-          of our services based on your existing hardware and intended goals. You don't have to hold a 
+          sales pitch, you will get open and honest conversations about benefits, and also limitations,
+          of our services based on your existing hardware and intended goals. You don't have to hold a
           degree in Computer Science to discuss NetWatch with me, as we will avoid jargon and speak frankly
           so that everything is clear and easy to understand. I appreciate your interest and look forward
-          to working with you to secure your network and assets! 
+          to working with you to secure your network and assets!
         </p>
         <div class="expect-grid">
           <div class="expect-card">
@@ -481,34 +181,8 @@
     </div>
   </div>
 
-  <footer>
-    <div class="footer-inner">
-      <span class="footer-brand">[NET<span>WATCH</span>]</span>
-      <ul class="footer-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="why.html">Why NetWatch</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="privacy.html">Privacy</a></li>
-      </ul>
-      <span class="footer-copy">&copy; 2026 NetWatch | All rights reserved</span>
-    </div>
-  </footer>
-
-  <script>
-    function toggleMenu() {
-      document.getElementById('mobileMenu').classList.toggle('open');
-    }
-
-    document.addEventListener('click', function(e) {
-      const menu = document.getElementById('mobileMenu');
-      const hamburger = document.querySelector('.nav-hamburger');
-      if (menu.classList.contains('open') && !menu.contains(e.target) && !hamburger.contains(e.target)) {
-        menu.classList.remove('open');
-      }
-    });
-  </script>
+  <footer id="site-footer"></footer>
+  <script src="assets/js/netwatch.js"></script>
 
 </body>
 </html>
