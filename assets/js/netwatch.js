@@ -43,6 +43,7 @@ function injectNav(activePage) {
     `    <a href="${link.href}" onclick="toggleMenu()">${link.label}</a>`
   ).join('\n');
 
+  // Nav goes inside the container
   container.innerHTML = `
   <nav>
     <a href="index.html" class="nav-logo">
@@ -55,11 +56,15 @@ ${desktopLinks}
     <button class="nav-hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
       <span></span><span></span><span></span>
     </button>
-  </nav>
+  </nav>`;
+
+  // Mobile menu injected as sibling AFTER site-nav, not inside it
+  // Keeps it out of site-nav's stacking context so z-index works correctly
+  container.insertAdjacentHTML('afterend', `
   <div class="mobile-menu" id="mobileMenu">
 ${mobileLinks}
     <a href="contact.html" class="nav-cta" onclick="toggleMenu()">Get Started</a>
-  </div>`;
+  </div>`);
 }
 
 
