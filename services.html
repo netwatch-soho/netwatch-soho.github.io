@@ -482,6 +482,23 @@
 
     window.addEventListener('scroll', updateTierNav, { passive: true });
     updateTierNav();
+
+    document.querySelectorAll('.tier-nav-item').forEach(item => {
+  item.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.getElementById(this.getAttribute('href').slice(1));
+    if (!target) return;
+    const primaryNav = document.querySelector('nav');
+    const tierNav = document.getElementById('tierNav');
+    const offset = (primaryNav ? primaryNav.offsetHeight : 64)
+                 + (tierNav ? tierNav.offsetHeight : 56)
+                 + 8;
+    window.scrollTo({
+      top: target.getBoundingClientRect().top + window.scrollY - offset,
+      behavior: 'smooth'
+    });
+  });
+});
   </script>
 
 </body>
