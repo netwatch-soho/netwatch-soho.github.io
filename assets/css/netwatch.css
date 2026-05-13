@@ -50,7 +50,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Noise texture overlay */
 body::before {
   content: '';
   position: fixed;
@@ -61,7 +60,6 @@ body::before {
   opacity: 0.4;
 }
 
-/* Grid pattern */
 body::after {
   content: '';
   position: fixed;
@@ -74,10 +72,15 @@ body::after {
   z-index: 0;
 }
 
-/* Ensure all content sits above pseudo-element overlays */
 * {
   position: relative;
   z-index: 1;
+}
+
+
+/* Ensure injected nav wrapper sits above all page content */
+#site-nav {
+  z-index: 200;
 }
 
 
@@ -415,7 +418,6 @@ nav {
   transition: border-color 0.25s;
   cursor: pointer;
   scroll-margin-top: 80px;
-
 }
 
 .tier:hover  { border-color: var(--teal-dim); }
@@ -659,7 +661,7 @@ nav {
 .breadcrumb span    { color: var(--teal-dim); }
 
 
-/* ── PAGE HEADER (interior pages) ── */
+/* ── PAGE HEADER ── */
 .page-header {
   max-width: 1100px;
   margin: 0 auto;
@@ -731,6 +733,70 @@ nav {
   color: var(--text);
   font-weight: 500;
 }
+
+
+/* ── HARDWARE CALLOUT ── */
+/* Amber warning block — used on services page, available site-wide */
+.hardware-callout {
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  padding: 2rem 2.25rem;
+  margin-bottom: 4rem;
+}
+
+.hardware-callout-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hardware-callout-label::before {
+  content: '⚠';
+  font-size: 0.75rem;
+}
+
+.hardware-callout p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 0.75rem;
+}
+
+.hardware-callout p:last-child { margin-bottom: 0; }
+
+.hardware-callout strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+
+/* ── OWNERSHIP NOTE ── */
+/* Teal info block — used on services page, available site-wide */
+.ownership-note {
+  background: var(--teal-glow);
+  border: 1px solid var(--teal-dim);
+  border-radius: 4px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 4rem;
+}
+
+.ownership-note p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 0.5rem;
+}
+
+.ownership-note p:last-child { margin-bottom: 0; }
+
+.ownership-note strong { color: var(--teal); font-weight: 500; }
 
 
 /* ── CTA SECTION (homepage) ── */
