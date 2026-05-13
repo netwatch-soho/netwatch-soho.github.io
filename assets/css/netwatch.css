@@ -47,7 +47,7 @@ body {
   font-size: 16px;
   line-height: 1.7;
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body::before {
@@ -77,8 +77,19 @@ body::after {
   z-index: 1;
 }
 
+/* html and body must be position:static — position:relative on these
+   elements interferes with sticky positioning across all pages */
+html, body {
+  position: static;
+}
+
 
 /* ── NAVIGATION ── */
+#site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 nav {
   position: sticky;
   top: 0;
